@@ -2,6 +2,9 @@ pluginManagement {
     repositories {
         google {
             content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
             }
         }
         mavenCentral()
@@ -17,4 +20,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "BehaviorTrees"
-include ':behaviortrees_javalib'
+include ':app'
+include ':behaviortrees'
