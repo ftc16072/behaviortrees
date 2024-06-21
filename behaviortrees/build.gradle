@@ -39,9 +39,9 @@ dependencies {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'com.github.ftc16072'
-            artifactId = 'behaviortrees-javalib'
-            version = "0.9"
+            groupId = 'com.ftcteams'
+            artifactId = 'behaviortrees'
+            version = "0.11"
             pom {
                 description = 'First release'
             }
