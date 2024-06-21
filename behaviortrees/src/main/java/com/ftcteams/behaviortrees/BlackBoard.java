@@ -34,6 +34,7 @@ public class BlackBoard {
                 return null;
             }
         }
-        return (T) value;
+        @SuppressWarnings("unchecked")  T retVal = (T) value;
+        return retVal;
     }
 }
