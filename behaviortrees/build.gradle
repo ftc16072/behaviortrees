@@ -24,6 +24,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    publishing {
+        multipleVariants {
+            allVariants()
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
@@ -36,7 +42,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.ftcteams'
             artifactId = 'behaviortrees'
-            version = "0.12"
+            version = "0.13"
             pom {
                 description = 'First release'
             }
