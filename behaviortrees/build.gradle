@@ -35,3 +35,19 @@ dependencies {
     implementation libs.appcompat
     implementation libs.material
 }
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.github.ftc16072'
+            artifactId = 'behaviortrees-javalib'
+            version = "0.9"
+            pom {
+                description = 'First release'
+            }
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
