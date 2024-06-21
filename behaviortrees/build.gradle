@@ -44,7 +44,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.ftcteams'
             artifactId = 'behaviortrees'
-            version = "0.1"
+            version = "0.1.0"
 
             afterEvaluate {
                 from components.release
