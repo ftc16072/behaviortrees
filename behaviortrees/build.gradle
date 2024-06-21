@@ -10,8 +10,10 @@ android {
     defaultConfig {
         minSdk 24
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+        aarMetadata {
+            minCompileSdk 24
+        }
     }
 
     buildTypes {
@@ -25,8 +27,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     publishing {
-        multipleVariants {
-            allVariants()
+        singleVariant('release') {
             withSourcesJar()
         }
     }
@@ -39,16 +40,20 @@ dependencies {
 
 publishing {
     publications {
-        maven(MavenPublication) {
+        release(MavenPublication) {
             groupId = 'com.ftcteams'
             artifactId = 'behaviortrees'
-            version = "0.13"
-            pom {
-                description = 'First release'
+            version = "0.14"
+
+            afterEvaluate {
+                from components.release
             }
         }
     }
     repositories {
-        mavenLocal()
+        maven {
+            name = 'myrepo'
+            url = "${project.buildDir}/repo"
+        }
     }
 }
