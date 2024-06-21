@@ -3,6 +3,10 @@ package com.ftcteams.behaviortrees;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Failover means that as soon as it hits a child with SUCCESS it returns SUCCESS.  If a child is RUNNING,
+ * it returns RUNNING.  If all children return FAILURE, it returns FAILURE
+ */
 public class Failover extends Node {
     List<Node> children;
 

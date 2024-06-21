@@ -1,6 +1,8 @@
 package com.ftcteams.behaviortrees;
 
-//Not reverses a value
+/**
+ * This reverses what a child node says.  Typically used on Conditions, but can be used anywhere
+ */
 public class Not extends Node {
     Node child;
 

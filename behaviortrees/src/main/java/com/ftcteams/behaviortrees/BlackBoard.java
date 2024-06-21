@@ -2,6 +2,9 @@ package com.ftcteams.behaviortrees;
 
 import java.util.HashMap;
 
+/**
+ * Allows for a place to store data
+ */
 public class BlackBoard {
     /**
      * creates hashmap as a storage method to reference values over various nodes

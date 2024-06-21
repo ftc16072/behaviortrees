@@ -3,6 +3,12 @@ package com.ftcteams.behaviortrees;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * This executes all of the children and if more than the required succcesses are successful  it returns
+ * SUCCESS.  Otherwise it returns RUNNING until all are done and then it returns FAILURE.
+ *
+ * NOTE: right now it will keep running even if there is no way it could be successful
+ */
 public class Parallel extends Node {
     List<Node> children;
     int requiredSuccesses;

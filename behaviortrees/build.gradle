@@ -29,6 +29,7 @@ android {
     publishing {
         singleVariant('release') {
             withSourcesJar()
+            withJavadocJar()
         }
     }
 }
@@ -43,7 +44,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.ftcteams'
             artifactId = 'behaviortrees'
-            version = "0.14"
+            version = "0.1"
 
             afterEvaluate {
                 from components.release
