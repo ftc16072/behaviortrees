@@ -31,8 +31,6 @@ android {
 }
 
 dependencies {
-    implementation libs.appcompat
-    implementation libs.material
 }
 
 publishing {
@@ -40,7 +38,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.ftcteams'
             artifactId = 'behaviortrees'
-            version = "0.1.1"
+            version = "0.1.2"
 
             afterEvaluate {
                 from components.release
