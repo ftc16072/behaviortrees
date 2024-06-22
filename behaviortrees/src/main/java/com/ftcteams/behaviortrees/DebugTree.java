@@ -1,7 +1,5 @@
 package com.ftcteams.behaviortrees;
 
-import androidx.annotation.NonNull;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
@@ -17,7 +15,6 @@ public class DebugTree {
             this.node = node;
         }
 
-        @NonNull
         public String toString(){
             String prefix = new String(new char[indent]).replace("\0", "-");
             String name = node.getClass().getSimpleName();
@@ -62,7 +59,6 @@ public class DebugTree {
         }
     }
 
-    @NonNull
     public String toString(){
         StringBuilder retString = new StringBuilder();
         for(NodeInfo nodeInfo : nodeInfoList){
