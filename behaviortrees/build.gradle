@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     id 'maven-publish'
+    id 'signing'
 }
 
 android {
@@ -36,13 +37,44 @@ dependencies {
 publishing {
     publications {
         release(MavenPublication) {
-            groupId = 'com.ftcteams'
-            artifactId = 'behaviortrees'
-            version = "0.1.4"
+            groupId = project.properties["GROUP"]
+            artifactId = project.properties["POM_ARTIFACT_ID"]
+            version = project.properties["VERSION_NAME"]
 
             afterEvaluate {
                 from components.release
             }
+            pom {
+                name = project.properties["POM_NAME"]
+                description = project.properties["POM_DESCRIPTION"]
+                url = project.properties["POM_URL"]
+                licenses {
+                    license {
+                        name = project.properties["POM_LICENSE_NAME"]
+                        url = project.properties["POM_LICENSE_URL"]
+                    }
+                }
+                developers {
+                    developer {
+                        id = project.properties["POM_DEVELOPER_ID"]
+                        name = project.properties["Alan Smith"]
+                    }
+                }
+                scm {
+                    connection = project.properties["POM_SCM_CONNECTION"]
+                    url = project.properties["POM_SCM_URL"]
+                }
+            }
+        }
+
+    }
+    repositories {
+        maven {
+            name = 'myRepo'
+            url = layout.buildDirectory.dir("repo")
         }
     }
+}
+signing {
+    sign publishing.publications
 }
