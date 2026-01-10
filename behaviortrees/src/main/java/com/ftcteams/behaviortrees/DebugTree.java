@@ -8,14 +8,15 @@ public class DebugTree {
     static class NodeInfo {
         int indent;
         public Node node;
-        Node.State state = Node.State.RUNNING;
+        Node.State state;
 
-        NodeInfo(int indent, Node node){
+        NodeInfo(int indent, Node node) {
             this.indent = indent;
             this.node = node;
+            state = Node.State.RUNNING;
         }
 
-        public String toString(){
+        public String toString() {
             String prefix = new String(new char[indent]).replace("\0", "-");
             String name = node.getClass().getSimpleName();
 
@@ -26,32 +27,36 @@ public class DebugTree {
                     return prefix + name + ":S\n";
                 case RUNNING:
                     return prefix + name + ":R\n";
+                default:
+                    return "";
             }
-            return "";
         }
     }
     List<NodeInfo> nodeInfoList;
     Stack<Node> parents = new Stack<>();
 
-    public DebugTree(){
+    public DebugTree() {
         reset();
     }
-    public void reset(){
+    
+    public void reset() {
         nodeInfoList = new LinkedList<>();
         parents = new Stack<>();
     }
-    public void startParent(Node parent){
+    
+    public void startParent(Node parent) {
         parents.push(parent);
     }
 
-    public void addNode(Node node){
+    public void addNode(Node node) {
         nodeInfoList.add(new NodeInfo(parents.size(), node));
     }
 
-    public void updateNode(Node node, Node.State newState){
+    public void updateNode(Node node, Node.State newState) {
         if (node == parents.peek()){
             parents.pop();
         }
+        
         for (NodeInfo nodeInfo : nodeInfoList){
             if(nodeInfo.node == node){
                 nodeInfo.state = newState;
@@ -59,11 +64,12 @@ public class DebugTree {
         }
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder retString = new StringBuilder();
-        for(NodeInfo nodeInfo : nodeInfoList){
+        for(NodeInfo nodeInfo : nodeInfoList) {
             retString.append(nodeInfo.toString());
         }
+        
         return retString.toString();
     }
 }
