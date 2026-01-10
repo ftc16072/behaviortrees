@@ -22,14 +22,16 @@ public class Parallel extends Node {
     public State tick(DebugTree debug, Object obj) {
         int numSuccessful = 0;
         boolean anyRunning = false;
+        
         debug.startParent(this);
+        
         for (Node child : children) {
             debug.addNode(child);
             State state = child.tick(debug, obj);
             debug.updateNode(child, state);
 
             if (state == State.SUCCESS) {
-                numSuccessful += 1;
+                numSuccessful++;
                 if (numSuccessful >= requiredSuccesses){
                     return State.SUCCESS;
                 }
