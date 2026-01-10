@@ -16,18 +16,17 @@ public class Sequence extends Node {
     @Override
     public State tick(DebugTree debug, Object obj) {
         debug.startParent(this);
+        State state = State.SUCCESS;
 
         for (Node child : children) {
             debug.addNode(child);
             State state = child.tick(debug, obj);
             debug.updateNode(child, state);
 
-            if (state == State.FAILURE) {
-                return State.FAILURE;
-            } else if (state == State.RUNNING) {
-                return State.RUNNING;
+            if (state == State.FAILURE || state == State.RUNNING) {
+                break;
             }
         }
-        return State.SUCCESS;
+        return state;
     }
 }
