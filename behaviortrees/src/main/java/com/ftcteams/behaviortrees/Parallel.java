@@ -37,9 +37,7 @@ public class Parallel extends Node {
                 anyRunning = true;
             }
         }
-        if (anyRunning){
-            return State.RUNNING;
-        }
-        return State.FAILURE;
+        
+        return (anyRunning) ? State.RUNNING : State.FAILURE;
     }
 }
