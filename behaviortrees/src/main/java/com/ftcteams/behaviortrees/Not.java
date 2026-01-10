@@ -6,20 +6,21 @@ package com.ftcteams.behaviortrees;
 public class Not extends Node {
     Node child;
 
-    public Not(Node a) {
-        this.child = a;
+    public Not(Node child) {
+        this.child = child;
     }
 
     @Override
     public State tick(DebugTree debug, Object obj) {
         State state = child.tick(debug, obj);
-
-        if (state == State.FAILURE) {
-            return State.SUCCESS;
-        } else if (state == State.SUCCESS) {
-            return State.FAILURE;
+        
+        switch (state) {
+            case State.SUCCESS:
+                return State.FAILURE;
+            case State.FAILURE:
+                return State.SUCCESS;
+            case State.RUNNING:
+                return State.RUNNING;
         }
-
-        return state;
     }
 }
