@@ -20,7 +20,7 @@ public class Sequence extends Node {
 
         for (Node child : children) {
             debug.addNode(child);
-            State state = child.tick(debug, obj);
+            state = child.tick(debug, obj);
             debug.updateNode(child, state);
 
             if (state == State.FAILURE || state == State.RUNNING) {
