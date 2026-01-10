@@ -8,6 +8,8 @@ import java.util.List;
  * SUCCESS.  Otherwise it returns RUNNING until all are done and then it returns FAILURE.
  *
  * If it is impossible the required number of successes to be met, it will return FAILURE early.
+ * 
+ * If you need RUNNING children to finish even if Paralle will return FAILURE, instead use ParallelNoBail.
  */
 public class Parallel extends Node {
     List<Node> children;
