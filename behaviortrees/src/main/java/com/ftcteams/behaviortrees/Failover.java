@@ -17,17 +17,17 @@ public class Failover extends Node {
     @Override
     public State tick(DebugTree debug, Object obj) {
         debug.startParent(this);
+        State state = State.FAILURE;
+        
         for (Node child : children) {
             debug.addNode(child);
-            State state = child.tick(debug, obj);
+            state = child.tick(debug, obj);
             debug.updateNode(child, state);
 
-            if (state == State.SUCCESS) {
-                return State.SUCCESS;
-            } else if (state == State.RUNNING) {
-                return State.RUNNING;
+            if (state == State.SUCCESS || state == State.RUNNING) {
+                break;
             }
         }
-        return State.FAILURE;
+        return state;
     }
 }
